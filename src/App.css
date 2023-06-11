@@ -1,38 +1,323 @@
-.App {
-  text-align: center;
+:root {
+  --clr-bg-primary: #1C8BD4;
+  --clr-bg-secondary: #2069F6;
+  --clr-bg-tertianary: #2AD1EB;
+  --clr-bg-primary: #1CD4BA;
+  --clr-bg-primary: #20F69C;
+  background-image: linear-gradient(90deg, var(--clr-bg-primary), var(--clr-bg-secondary));
+  --fs-small: 0.8rem;
+  --fs-xsmall: 0.5rem;
+  --fs-normal: 1.2rem;
+  --fs-big: 2rem;
+  --ff-primary: Arial;
+  --ff-secondary: Arial;
+  font-family: var(--ff-primary);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.settingsContainer,
+.playContainer {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  background-color: white;
+  width: 800px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+h1 {
+  font-size: var(--fs-big);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.settingsContainer button {
+  width: 300px;
+  height: 50px;
+  margin: 50px 0 50px 0;
+  border-radius: 0;
+  font-size: var(--fs-normal)
+}
+
+.settingsContainer button:hover {
+  background-color: var(--clr-bg-tertianary);
+  cursor: pointer;
+}
+
+#root {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+}
+
+.sudokuContainer {
+  background-color: black;
+  display: grid;
+  grid-template-columns: 55px 50px 50px 55px 50px 50px 55px 50px 55px;
+  grid-template-rows: 55px 50px 50px 55px 50px 50px 55px 50px 55px;
+}
+
+.sudokuContainer .cellContainer:nth-child(9n+1),
+.sudokuContainer .cellContainer:nth-child(9n+4),
+.sudokuContainer .cellContainer:nth-child(9n+7){
+  margin-left: 5px;
+}
+
+.sudokuContainer .cellContainer:nth-child(9n){
+  margin-right: 5px;
+}
+
+.sudokuContainer .cellContainer:nth-child(27n+1),
+.sudokuContainer .cellContainer:nth-child(27n+2),
+.sudokuContainer .cellContainer:nth-child(27n+3),
+.sudokuContainer .cellContainer:nth-child(27n+4),
+.sudokuContainer .cellContainer:nth-child(27n+5),
+.sudokuContainer .cellContainer:nth-child(27n+6),
+.sudokuContainer .cellContainer:nth-child(27n+7),
+.sudokuContainer .cellContainer:nth-child(27n+8),
+.sudokuContainer .cellContainer:nth-child(27n+9) {
+  margin-top: 5px;
+}
+
+.sudokuContainer .cellContainer:nth-child(73),
+.sudokuContainer .cellContainer:nth-child(74),
+.sudokuContainer .cellContainer:nth-child(75),
+.sudokuContainer .cellContainer:nth-child(76),
+.sudokuContainer .cellContainer:nth-child(77),
+.sudokuContainer .cellContainer:nth-child(78),
+.sudokuContainer .cellContainer:nth-child(79),
+.sudokuContainer .cellContainer:nth-child(80),
+.sudokuContainer .cellContainer:nth-child(81) {
+  margin-bottom: 5px;
+}
+
+.cellContainer {
+  width: 50px;
+  height: 50px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: "one two three"
+  "four five six"
+  "seven eight nine";
+  grid-auto-rows: 16px;
+  background-color: white;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+}
+
+.cellContainer input {
+  height: 48px;
+  grid-column: 1/4;
+  grid-row: 1/4;
+  text-align: center;
+  font-size: var(--fs-normal);
+  outline: none;
+  border-style: none;
+  background-color: white;
+  caret-color: transparent;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+}
+
+.cellContainer input.filled {
+  opacity: 1;
+}
+
+.cellContainer input.rowActiveCell,
+.cellContainer input.colActiveCell,
+.cellContainer input.activeBlockCell,
+.cellContainer.rowActiveCell,
+.cellContainer.colActiveCell,
+.cellContainer.activeBlockCell {
+  background-color: lightgrey;
+}
+
+.cellContainer input.numberActive,
+.numberActive {
+  background-color: lightblue;
+}
+
+.cellContainer input.activeCell,
+.cellContainer.activeCell {
+  background-color: lightblue;
+}
+
+.possibleNumber {
+  font-size: var(--fs-small);
+  text-align: center;
+  height: 16px;
+}
+
+.one {
+  grid-area: one;
+}
+
+.two {
+  grid-area: two;
+}
+
+.three {
+  grid-area: three;
+}
+
+.four {
+  grid-area: four;
+}
+
+.five {
+  grid-area: five;
+}
+
+.six {
+  grid-area: six;
+}
+
+.seven {
+  grid-area: seven;
+}
+
+.eight {
+  grid-area: eight;
+}
+
+.nine {
+  grid-area: nine;
+}
+
+.sudokuContainer input:hover {
+  cursor: pointer;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.numberContainer {
+  display: flex;
+
+}
+
+.buttonContainer button,
+.numberContainer button {
+  padding: 10px;
+}
+
+.activeNumber {
+  background-color: lightblue;
+}
+
+
+
+
+.backgroundElement {
+  grid-row: 1/4;
+  grid-column: 1/4;
+  background-color: lightgreen;
+}
+
+.svgButton {
+  color: blue;
+  filter: grayscale(100%) opacity(0.7);
+}
+
+.svgButton.active {
+  filter: grayscale(0%) opacity(1);
+}
+
+
+
+/* Form-input at 'Analyze History-component' */
+
+.historyContainer {
+  margin: auto;
+  margin-top: 20px;
+  background-color: white;
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.historyContainer .analyzeOption {
+  display: flex;
+  align-self: center;
+  width: 500px;
+  margin-bottom: 10px;
+}
+
+.analyzeOption label {
+  flex: 0 0 350px;
+}
+
+.analyzeOption select {
+  flex: 0 0 200px;
+}
+
+
+/* List of played Sudokus at 'Analyze History-component */
+.sudokuHistory {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  align-items: stretch;
+  width: 700px;
+  max-height: 80vh;
+  margin-bottom: 30px;
+}
+
+.sudokuHistory .sudokuInfo {
+  flex: 0 0 200px;
+  display: flex;
+  margin-bottom: 10px;
+  border-style: solid;
+}
+
+.sudokuInfo .sudokuMetaData {
+  flex: 0 0 200px;
+}
+
+.sudokuInfo .sudokuPicture {
+  flex: 0 0 400px;
+  background-color: orange;
+}
+
+.highScoreData {
+  display: 
+}
+
+
+.highScoreData {
+  margin: auto;
+  margin-top: 20px;
+  background-color: white;
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  
+}
+
+.highScoreData div {
+  display: flex;
+  align-self: center;
+  width: 500px;
+  margin-bottom: 10px;
+}
+
+.highScoreData .description {
+  flex: 0 0 350px;
+}
+
+.highScoreData .value {
+  flex: 0 0 200px;
 }

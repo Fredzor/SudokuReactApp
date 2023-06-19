@@ -66,7 +66,7 @@ export default function SudokuGrid(props) {
         let csrftoken = props.getCookie('csrftoken');
         // gets executed only if you want to start a new sudoku
         if (props.playedSudoku == null) {
-            var url = 'http://127.0.0.1:8000/sodoku/createPlayedSudokuInstance'
+            var url = 'frederik-bergs.com/sodoku/createPlayedSudokuInstance'
             const sudokuData = fetch(url,
                 {
                     method: 'POST',
@@ -116,7 +116,7 @@ export default function SudokuGrid(props) {
         if (playedSudokuID != null) {
             // wait until a playedSudokuID has been set
             let csrftoken = props.getCookie('csrftoken');
-            var url = 'http://127.0.0.1:8000/sodoku/playedSudokuUpdateView'
+            var url = 'frederik-bergs.com/sodoku/playedSudokuUpdateView'
             fetch(url,
                 {
                     method: 'POST',

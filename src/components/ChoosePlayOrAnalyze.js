@@ -9,6 +9,7 @@ export default function ChoosePlayOrAnalyze(props) {
     function handleUserCreation() {
         const url = 'frederik-bergs.com/sodoku/createPlayer';
         let csrftoken = props.getCookie('csrftoken');
+        console.log(csrftoken);
         fetch(url,
             {
                 method: 'POST',
@@ -23,6 +24,7 @@ export default function ChoosePlayOrAnalyze(props) {
         .then((response) => {
             return response.json()})
         .then((data)=> {
+            console.log(data);
             props.setplayerID(data.id);
         })
 

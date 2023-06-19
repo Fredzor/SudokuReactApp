@@ -27,6 +27,9 @@ export default function ChoosePlayOrAnalyze(props) {
             console.log(data);
             props.setplayerID(data.id);
         })
+        .catch((error)=> {
+            console.log(error)
+        })
 
     }
 

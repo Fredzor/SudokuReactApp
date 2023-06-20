@@ -8,7 +8,7 @@ export default function ChooseNewOrActive(props) {
 
     function getData() {
         let csrftoken = props.getCookie();
-        fetch('frederik-bergs.com/sodoku/getActivePlayedSudokus',
+        fetch('https://www.frederik-bergs.com/sodoku/getActivePlayedSudokus',
         {
             method: 'POST',
             mode: "cors",

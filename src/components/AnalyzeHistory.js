@@ -11,7 +11,7 @@ export default function AnalyzeHistory(props) {
 
     React.useEffect(()=>{
         var csrftoken = props.getCookie()
-        let url = 'frederik-bergs.com/sodoku/playedSudokuHistory'
+        let url = 'https://www.frederik-bergs.com/sodoku/playedSudokuHistory'
         fetch(url, 
             {
                 method: 'POST',

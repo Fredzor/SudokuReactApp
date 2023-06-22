@@ -7,7 +7,11 @@ export default function AnalyzeHistory(props) {
     const [amount, setamount] = React.useState(10)
     const [sortBy, setsortBy] = React.useState('Date finished')
     const [data, setdata] = React.useState([])
-    
+
+    console.log('difficulty: ', difficulty,
+		'amount: ', amount, 
+		'sortBy: ', sortBy,
+		'playerID: ', props.playerID);    
 
     React.useEffect(()=>{
         var csrftoken = props.getCookie()

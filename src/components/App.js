@@ -19,6 +19,7 @@ function App() {
   // 
   const [playedSudoku, setplayedSudoku] = React.useState(null)
 
+  const [authCookie, setauthCookie] = React.useState(getCookie('csrftoken'))
 
   function getCookie(name) {
     let cookieValue = null;
@@ -35,6 +36,8 @@ function App() {
     }
     return cookieValue;
   }
+
+  
 
   function handleClickAnalyze() {
     setProgramState('AnalyzeHistory')
@@ -58,12 +61,12 @@ function App() {
       handleClickAnalyze = {handleClickAnalyze}
       handleClickChooseDifficulty = {handleClickChooseDifficulty}
       setplayerID = {setplayerID}
-      getCookie = {getCookie}
+      authCookie = {authCookie}
       />}
       {programState === 'ChooseDifficulty' && <ChooseDifficulty
       setProgramState = {setProgramState}
       setDifficulty = {setDifficulty}
-      getCookie = {getCookie}
+      authCookie = {authCookie}
 
       />}
       {programState === 'PlaySudoku' && <PlaySudoku
@@ -71,7 +74,7 @@ function App() {
       handleClickChooseDifficulty = {handleClickChooseDifficulty}
       handleClickAnalyze = {handleClickAnalyze}
       playerID = {playerID}
-      getCookie = {getCookie}
+      authCookie = {authCookie}
       setplayedSudoku = {setplayedSudoku}
       playedSudoku = {playedSudoku}
       />}
@@ -79,13 +82,13 @@ function App() {
       {programState === 'ChooseNewOrActive' && <ChooseNewOrActive
       difficulty = {difficulty}
       playerID = {playerID}
-      getCookie = {getCookie}
+      authCookie = {authCookie}
       handleClickPlaySudoku = {handleClickPlaySudoku}
       setplayedSudoku = {setplayedSudoku}
       />}
 
       {programState === 'AnalyzeHistory' && <AnalyzeHistory
-      getCookie = {getCookie}
+      authCookie = {authCookie}
       playerID = {playerID}
       
       />}

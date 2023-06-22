@@ -8,7 +8,7 @@ export default function ChoosePlayOrAnalyze(props) {
     // if a user would get created using a form which gets send via clicking the submit button
     function handleUserCreation() {
         const url = 'https://www.frederik-bergs.com/sodoku/createPlayer';
-        let csrftoken = props.getCookie('csrftoken');
+        let csrftoken = props.authCookie;
         console.log(csrftoken);
         fetch(url,
             {

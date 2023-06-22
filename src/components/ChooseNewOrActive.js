@@ -7,7 +7,7 @@ export default function ChooseNewOrActive(props) {
     React.useEffect(getData, [])
 
     function getData() {
-        let csrftoken = props.getCookie();
+        let csrftoken = props.authCookie;
         fetch('https://www.frederik-bergs.com/sodoku/getActivePlayedSudokus',
         {
             method: 'POST',

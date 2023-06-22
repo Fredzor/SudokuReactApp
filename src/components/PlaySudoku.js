@@ -63,7 +63,7 @@ export default function SudokuGrid(props) {
     // Create a playedSudoku-Instance
     React.useEffect(getSudoku, []);
     function getSudoku() {
-        let csrftoken = props.getCookie('csrftoken');
+        let csrftoken = props.authCookie;
         // gets executed only if you want to start a new sudoku
         if (props.playedSudoku == null) {
             var url = 'https://www.frederik-bergs.com/sodoku/createPlayedSudokuInstance'
@@ -115,7 +115,7 @@ export default function SudokuGrid(props) {
     function updatePlayedSudoku() {
         if (playedSudokuID != null) {
             // wait until a playedSudokuID has been set
-            let csrftoken = props.getCookie('csrftoken');
+            let csrftoken = props.authCookie;
             var url = 'https://www.frederik-bergs.com/sodoku/playedSudokuUpdateView'
             fetch(url,
                 {

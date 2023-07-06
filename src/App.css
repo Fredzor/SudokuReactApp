@@ -322,3 +322,51 @@ h1 {
 .highScoreData .value {
   flex: 0 0 200px;
 }
+
+@media only screen and (min-width: 1000px) {
+  
+
+  .sudokuContainer {
+    background-color: black;
+    display: grid;
+    grid-template-columns: 70px 65px 65px 70px 65px 65px 70px 65px 70px;
+    grid-template-rows: 70px 65px 65px 70px 65px 65px 70px 65px 70px;
+  }
+  
+  .cellContainer {
+    width: 65px;
+    height: 65px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: "one two three"
+    "four five six"
+    "seven eight nine";
+    grid-auto-rows: 21px;
+    background-color: white;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+  }
+
+  .possibleNumber {
+    font-size: var(--fs-small);
+    text-align: center;
+    height: 21px;
+  }
+  
+  .cellContainer input {
+    height: 63px;
+    grid-column: 1/4;
+    grid-row: 1/4;
+    text-align: center;
+    font-size: var(--fs-normal);
+    outline: none;
+    border-style: none;
+    background-color: white;
+    caret-color: transparent;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+  }
+
+}
